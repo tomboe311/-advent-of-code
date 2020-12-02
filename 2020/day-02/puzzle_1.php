@@ -35,3 +35,23 @@ foreach ($passwords as $key => $password) {
 }
 
 echo $sum;
+
+// with regex
+$sum = 0;
+$pattern = '/(\d+)\-(\d+)\s(\w):\s(\w+)/';
+$validPasswords = [];
+foreach ($contents as $key => $line) {
+  preg_match($pattern, $line, $matches);
+  $min = $matches[1];
+  $max = $matches[2];
+  $needle = $matches[3];
+  $password = $matches[4];
+
+  $count = substr_count($password, $needle);
+  if ($min <= $count && $count <= $max) {
+    array_push($validPasswords, $password);
+  }
+}
+
+
+echo \PHP_EOL . count($validPasswords) . \PHP_EOL;
