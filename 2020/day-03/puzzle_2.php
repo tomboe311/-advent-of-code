@@ -28,5 +28,26 @@ function countTrees($area, $right, $down) {
   return $trees;
 }
 
-
+// possible solution 1
 echo countTrees($area, 1, 1) * countTrees($area, 3, 1) * countTrees($area, 5, 1) * countTrees($area, 7, 1) * countTrees($area, 1, 2) . \PHP_EOL;
+
+// possible solution 2
+$slopes = [
+  [1,1],
+  [3,1],
+  [5,1],
+  [7,1],
+  [1,2],
+];
+$sum = 0;
+foreach ($slopes as $slope) {
+  $trees = countTrees($area, $slope[0], $slope[1]);
+  if ($sum === 0) {
+    $sum = $trees;
+  } else {
+    $sum *= $trees;
+  }
+}
+
+echo $sum . \PHP_EOL;
+
