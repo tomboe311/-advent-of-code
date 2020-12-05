@@ -8,31 +8,18 @@
 
 $seats = explode("\n", file_get_contents("input"));
 
-$ranges = [
-  64,
-  32,
-  16,
-  8,
-  4,
-  2
-];
-
-$rounds = 6;
-
-$seatRanges = [
-  4,
-  2
-];
 $highestSeatId = 0;
 foreach ($seats as $seat) {
   $start = 0;
   $end = 127;
+  $range = 128;
 
-  for ($i = 0; $i < $rounds; $i++) {
+  for ($i = 0; $i < 6; $i++) {
+    $range /= 2;
     if ($seat[$i] === 'F') {
-      $end = $end - $ranges[$i];
+      $end = $end - $range;
     } else {
-      $start = $start + $ranges[$i];
+      $start = $start + $range;
     }
 
   }
@@ -45,7 +32,6 @@ foreach ($seats as $seat) {
 
   $start = 0;
   $end = 7;
-  //TODO
   $range = 8;
   for ($i = 7; $i < 10; $i++) {
     $range /= 2;
