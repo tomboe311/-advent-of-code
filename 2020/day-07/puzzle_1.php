@@ -6,7 +6,7 @@
  * @url https://adventofcode.com/2020/day/7
  */
 
-$allBags = explode("\n", file_get_contents("input_test"));
+$allBags = explode("\n", file_get_contents("input"));
 $searchedBags = ['shiny gold'];
 
 foreach ($allBags as $line) {
